@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "cricket-streaming-data"
+version = "0.1.0"
+description = ""
+authors = ["muhammad tariq <usama.bt94@gmail.com>"]
+readme = "README.md"
+packages = [{include = "cricket_streaming_data"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aws-cdk-lib = "2.87.0"
+constructs = ">=10.0.0,<11.0.0"
+
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.25.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
