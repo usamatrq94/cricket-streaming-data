@@ -87,7 +87,9 @@ class StreamingDataInfrastructure(Stack):
                 ),
                 compression_format="UNCOMPRESSED",
                 role_arn=firehose_role.role_arn,
-                prefix=f"{PREFIX}/",
+                prefix=f"{PREFIX}"
+                + "/year=!{timestamp:yyyy}/month=!{timestamp:MM}/day=!{timestamp:dd}/",
+                error_output_prefix="error/year=!{timestamp:yyyy}/month=!{timestamp:MM}/day=!{timestamp:dd}/!{firehose:error-output-type}",
                 processing_configuration=firehose.CfnDeliveryStream.ProcessingConfigurationProperty(
                     enabled=True,
                     processors=[
