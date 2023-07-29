@@ -140,6 +140,9 @@ class StreamingDataInfrastructure(Stack):
                     )
                 ]
             ),
+            schedule=glue.CfnCrawler.ScheduleProperty(
+                schedule_expression="cron(0 7 * * ? *)"  # run at 7am UTC everyday
+            ),
             schema_change_policy=glue.CfnCrawler.SchemaChangePolicyProperty(
                 delete_behavior="LOG", update_behavior="UPDATE_IN_DATABASE"
             ),
