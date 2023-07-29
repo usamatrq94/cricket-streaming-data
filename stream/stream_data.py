@@ -40,12 +40,13 @@ def stream_data_simulator(stream_s3_bucket: str, stream_s3_key: str) -> None:
         json_load = json.loads(line_json)
 
         json_load["timestamp"] = datetime.now().isoformat()
+        match_id = json_load[STREAMING_PARTITION_KEY]
 
         # Write to Kinesis Streams:
         response = kinesis_client.put_record(
             StreamName=kinesis_stream_name,
             Data=json.dumps(json_load, indent=4),
-            PartitionKey=str(json_load[STREAMING_PARTITION_KEY]),
+            PartitionKey=str(match_id),
         )
 
         print(
